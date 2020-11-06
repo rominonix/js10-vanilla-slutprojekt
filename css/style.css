@@ -23,3 +23,15 @@ img {
     padding: 15%;
     
 }
+
+.landing-page{
+    display: none;
+}
+
+.beer-info-page{
+    display: none;
+}
+
+.visible{
+    display: block;
+}
