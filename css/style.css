@@ -19,16 +19,16 @@ img {
     justify-content: center;
     background-color: antiquewhite;
 }
+.img-container-info {
+    width: 10%;
+}
 .card {
     padding: 15%;
     
 }
 
-.landing-page{
-    display: none;
-}
 
-.beer-info-page{
+.hidden {
     display: none;
 }
 
