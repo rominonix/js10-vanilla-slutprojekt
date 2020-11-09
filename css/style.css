@@ -71,7 +71,8 @@ h2 {
 
 h3 {
     font-family: 'Spartan', sans-serif;
-    font-weight: 500;  
+    font-weight: 500; 
+    text-align: center; 
 }
 
 li, p {
@@ -86,7 +87,7 @@ img {
     width: 60%;
 }
 
-.home {
+.home, .search {
     width: 100%;
     padding-top: 2%;
 }
@@ -131,3 +132,30 @@ img {
       width: 100%;
     }
   } */
+
+  /* SEARCH STYLES */
+
+.form {
+    margin-top: 2%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-card-left, .search-card-right {
+    margin: 5%;
+    width: 450px;
+    height: 650px;
+    border-radius: 15px 15px 0px 0px;
+    background-color: antiquewhite;
+}
+
+.search-card-right {
+    background-color: whitesmoke;
+} 
+
+.search-card{
+    display: flex;
+    justify-content: center;   
+}

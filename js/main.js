@@ -39,7 +39,7 @@ randomBeerButton.addEventListener("click", async function(){
     renderRandomBeer(beerData)   
 })
 
-//// ASYNC FUNCTIONS ////
+//// ASYNC FUNCTIONS RANDOM BEER ////
 
 async function renderListInfo(beerData){
     let sortBeerData = []
@@ -101,3 +101,34 @@ async function renderRandomBeer(beerData){
     const beerName = document.querySelector(".beer-name")
     beerName.innerHTML = beerData[0].name
 }
+
+//// HÄMTA INFO FOR SEARCH PAGE / SEARCH FIELD ////
+async function searchBeers(beer){
+    const searchUrl = `https://api.punkapi.com/v2/beers?beer_name=${beer}`
+    const searchInfo = await fetch(searchUrl)
+    const data = await searchInfo.json()
+    return data
+}
+
+let userInputBeer = ""
+
+function userInput(){
+    const inputBeerName = document.querySelector("#beer_name")
+    const inputButton = document.querySelector(".search-button")
+    inputButton.addEventListener("click", async () =>{
+        userInputBeer = inputBeerName.value
+        const resBeers = await searchBeers(userInputBeer)
+        renderSearchBeers(resBeers)
+    })
+}
+
+function renderSearchBeers(newBeers){
+    const renderBeers = document.querySelector(".search-card-left")
+    // console.log(newBeers);
+    for (let beer of newBeers){
+        const newList = document.createElement("li")
+        newList.innerHTML = beer.name
+        renderBeers.append(newList)
+    }
+}
+userInput()
