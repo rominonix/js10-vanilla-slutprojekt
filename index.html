@@ -3,30 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beer projekt</title>
+    <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Spartan:wght@200;300;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <title>Beer projekt</title>
 </head>
 <body>
     <header>
+        <h1>Beer Project</h1>
         <nav>
-            <a class="home-button" href="#">Home</a>
-            <a href="#">Search</a>
-            <a href="#">Beer Info</a>
+            <a id="home" href="#">Home</a>
+            <a id="search "href="#">Search</a>
+            <a id="info" href="#">Beer Info</a>
         </nav>
     </header>
     <main>
-        <section class="landing-page visible">
+        <section class="home active">
+            <h2></h2>
             <div class="card">
                 <div class="img-container">
                     <img class="beer-image" src="https://images.punkapi.com/v2/192.png" alt="">
                 </div>
                 <h3 class="beer-name">Name Beer</h3>
                 <a class="more-info-button" href="#">More info</a>
+                <button class="random-button">random beer</button>
             </div>
-            <button class="random-button">random beer</button>
         </section>
-        <section class="search-page"></section>
-        <section class="beer-info-page hidden">
+        <section class="search">
+            <h2>Search</h2>
+        </section>
+        <section class="info">
+            <h2>Information Beer</h2>
             <h3 class="beer-name-info"></h3>
             <div class="img-container-info">
                 <img class="beer-image-info" src="https://images.punkapi.com/v2/192.png" alt="">
@@ -48,8 +55,7 @@
                 </li>
                 <li class=""></li>
                 <li></li> -->
-            </ul>
-            
+            </ul>    
         </section>
     </main>
     <script src="js/main.js"></script>
