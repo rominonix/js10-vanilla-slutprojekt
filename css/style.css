@@ -33,7 +33,7 @@ nav > a {
     letter-spacing: 0.1em;
     text-transform: uppercase;
     font-weight: 400;
-    color: #ffffff;
+    color:whitesmoke;
     padding: 1% 2% 1% 2%;
 }
 
@@ -61,7 +61,7 @@ main > section.active {
 
 h1 {
     font-family: 'Major Mono Display', monospace;
-    color: #ffffff;
+    color:whitesmoke;
     font-size: 250%;
 }
 
@@ -72,7 +72,14 @@ h2 {
 h3 {
     font-family: 'Spartan', sans-serif;
     font-weight: 500; 
+    font-size: 16px;
+    letter-spacing: 0.1em;
     text-align: center; 
+    font-family: 'Spartan', sans-serif;
+    padding: 5%;
+    background: cadetblue;
+    color: whitesmoke;
+    border-radius: 10px 10px 0px 0px;
 }
 
 li, p {
@@ -146,7 +153,7 @@ img {
 .search-card-left, .search-card-right {
     margin: 5%;
     width: 450px;
-    height: 650px;
+    height: 740px;
     border-radius: 15px 15px 0px 0px;
     background-color: antiquewhite;
 }
@@ -158,4 +165,51 @@ img {
 .search-card{
     display: flex;
     justify-content: center;   
+}
+
+.beer-list{
+    font-size: 14px;
+    font-weight: 500;
+    padding: 0% 5% 0% 5%;
+    color: palevioletred;
+    line-height: 1.5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 60px;
+    border-bottom: solid 2px cadetblue;
+}
+.beer-list:hover {
+    color: whitesmoke;
+    background-color: cadetblue;
+
+}
+
+.hidden {
+    display: none;
+}
+
+.fas {
+    color: teal;
+    font-size: 30px;
+    cursor: pointer;
+}
+.prev, .next {
+  width: 100px;
+  height: 75px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pages {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-self: flex-end;
+}
+
+p.next-prev {
+    color: teal;
+    margin: 0 10% 0 10%;
 }

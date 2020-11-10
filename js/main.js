@@ -103,32 +103,71 @@ async function renderRandomBeer(beerData){
 }
 
 //// HÄMTA INFO FOR SEARCH PAGE / SEARCH FIELD ////
+
+let userInputBeer = ""
+let pages = 1
+
 async function searchBeers(beer){
-    const searchUrl = `https://api.punkapi.com/v2/beers?beer_name=${beer}`
+    const searchUrl = `https://api.punkapi.com/v2/beers?beer_name=${beer}&page=${pages}&per_page=10`
     const searchInfo = await fetch(searchUrl)
     const data = await searchInfo.json()
     return data
 }
 
-let userInputBeer = ""
-
 function userInput(){
     const inputBeerName = document.querySelector("#beer_name")
     const inputButton = document.querySelector(".search-button")
+    const nextPrev = document.querySelector(".pagination")
+    nextPrev.classList.add("hidden")
     inputButton.addEventListener("click", async () =>{
         userInputBeer = inputBeerName.value
         const resBeers = await searchBeers(userInputBeer)
         renderSearchBeers(resBeers)
+        inputBeerName.value = ""
+        nextPrev.classList.remove("hidden")
     })
+    // renderSearchBeers(newList)
+    // hideBeerList()
 }
 
 function renderSearchBeers(newBeers){
     const renderBeers = document.querySelector(".search-card-left")
-    // console.log(newBeers);
     for (let beer of newBeers){
         const newList = document.createElement("li")
+        newList.classList.add("beer-list", "clear") // relaterad till hideBeerList()
         newList.innerHTML = beer.name
         renderBeers.append(newList)
+    }    
+}
+
+function nextPrevButtons(){
+    const nextPreviousBeers = userInput()
+    const prev = document.querySelector(".prev")
+    prev.addEventListener("click", async () => {
+        hideBeerList()
+        if(pages > 1){
+            pages--;  
+        }
+        const resBeers = await searchBeers(userInputBeer)
+        renderSearchBeers(resBeers)
+    })  
+    
+    const next = document.querySelector(".next")
+    const nextPage = document.querySelector(".pages")
+    next.addEventListener("click",async () => {
+        hideBeerList()
+        // if(pages < 9){ // här skriva nån villkor för att next button vissas inte när arrayen har mindre 9 elementet
+            pages++; 
+        // } 
+        const resBeers = await searchBeers(userInputBeer)
+        renderSearchBeers(resBeers)
+    })         
+}
+nextPrevButtons()
+
+function hideBeerList(){
+    const details = document.querySelectorAll(".clear")
+    for(let currentInfo of details){
+        currentInfo.classList.add("hidden")
     }
 }
-userInput()

@@ -6,6 +6,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Spartan:wght@200;300;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://kit.fontawesome.com/b160f7bbaf.js" crossorigin="anonymous"></script>
     <title>Beer projekt</title>
 </head>
 <body>
@@ -24,7 +25,7 @@
                 <div class="img-container">
                     <img class="beer-image" src="https://images.punkapi.com/v2/192.png" alt="">
                 </div>
-                <h3 class="beer-name">Name Beer</h3>
+                <h2 class="beer-name">Name Beer</h2>
                 <a class="more-info-button" href="#">More info</a>
                 <button class="random-button">random beer</button>
             </div>
@@ -38,24 +39,29 @@
             </div>    
             <div class="search-card">
             <div class="search-card-left">
-                <h3>Search Resultat</h3>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <!-- här kommer att finnas 10 beers + paginering? -->
-                <!-- <div class="pages"> paginering</div> -->
+                <h3>SEARCH RESULT</h3>
+                <div class="pagination">
+                    <div class="pages">
+                        <div class="prev">
+                            <i class="fas fa-caret-left"></i>
+                            <p class="next-prev">previous</p>
+                        </div>
+                        <div class="next">
+                            <p class="next-prev">next</p>
+                            <i class="fas fa-caret-right"></i>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="search-card-right">
-                <h3>Information beer</h3>
-                <!-- här kommer att visas info av beer som användare har clickat -->
+                <h3>BEER INFORMATION</h3>
+                <!-- här kommer att visas beersinfo som användare har clickat -->
             </div>
             </div>
         </section>
         <section class="info">
             <h2>Information Beer</h2>
-            <h3 class="beer-name-info"></h3>
+            <h2 class="beer-name-info"></h2>
             <div class="img-container-info">
                 <img class="beer-image-info" src="https://images.punkapi.com/v2/192.png" alt="">
             </div>
