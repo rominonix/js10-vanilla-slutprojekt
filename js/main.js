@@ -152,6 +152,10 @@ async function renderRandomBeer(beerData){
     }
     const beerName = document.querySelector(".beer-name")
     beerName.innerHTML = beerData[0].name
+
+    const tagline = document.querySelector(".tagline")
+    tagline.innerHTML = beerData.tagline
+
 }
 
 //// HÄMTA INFO FOR SEARCH PAGE / SEARCH FIELD ////
@@ -224,7 +228,6 @@ function hideBeerList(){
     }
 }
 
-    const tagline = document.querySelector(".tagline")
-    tagline.innerHTML = beerData.tagline
-}
+
+
 
