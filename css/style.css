@@ -40,6 +40,7 @@ nav > a {
 a {
     text-decoration: none;
     cursor: cell;
+    font-family: 'Spartan', sans-serif;
 } 
 
 main {
@@ -99,6 +100,14 @@ img {
     padding-top: 2%;
 }
 
+.card {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .img-container {
     width: 200px;
     height: auto;
@@ -107,18 +116,71 @@ img {
     justify-content: center;
     align-items: center;
     background-color: antiquewhite;
+
+    border-radius: 5px;
 }
 
-.img-container-info {
-    width: 10%;
+.home-img {
+    width: 60%;
 }
+
+.info-img {
+    width: 40%;
+}
+
+.info-card {
+
+    padding: 3%;
+
+    display: grid;
+    grid-template-areas:
+        'image description description description list list'
+        'image description description description list list'
+        'brewer brewer      food food              list list'
+        'brewer brewer      food food              button button'
+    ;
+    align-items: start;
+    justify-content: start;
+}
+.info-card > .img-container {
+    grid-area: image;
+}
+.info-card > .description {
+    grid-area: description
+}
+.info-card > .brewers-tips {
+    grid-area: brewer;
+}
+.info-card > .food-pairing {
+    grid-area: food;
+}
+.info-card > a {
+    grid-area: button;
+}
+.info-card > .info-list {
+    grid-area: list;
+
+    border: solid 2px antiquewhite;
+    border-radius: 5px;
+    margin: 10px;
+}
+.info-card > div, .info-card > ul{
+    padding: 10px;
+}
+.info-list > li > ul > li, .info-list > li > ul, .info-list > li > li  {
+    padding-left: 10%;
+}
+
+/* MORE INFO OCH LESS INFO FUNKTION*/
 
 .card {
-    width: 100%;
+    display: none;
+}
+.home-card.active {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+}
+.info-card.active {
+    display: grid;
 }
 
 /* ANIMATION */
