@@ -49,15 +49,13 @@
                 <ul class="info-list"></ul>
             </div>
         </section>
-
-        <section class="search">
         
-
+        <section class="search">     
             <div class="form">
                 <label for="b-name">Beer name:</label>
                 <input type="text" id="beer_name" minlength="3" name="beer_name" placeholder=" Write a beer name">
                 <p class="form-message hidden"><i class="fas fa-exclamation-triangle"></i><b>Error:</b> You need at least three characters, try again!</p>
-                <p class="form-message-1 hidden"><i class="fas fa-exclamation-triangle"></i><b>Error:</b> You need a maximum of ten characters, try again!</p>
+                <p class="form-message-1 hidden"><i class="fas fa-exclamation-triangle"></i><b>Error:</b> We have not found any beer with that name, try again!</p>
                 <button class="search-button">Search</button>
             </div>    
 
@@ -81,23 +79,22 @@
                         </div>
                     </div>
                 </div>
-            <div class="search-card-right">
-                <div class="title">
-                    <h4>BEER INFORMATION</h4>
+                <div class="search-card-right">
+                    <div class="title">
+                        <h4>BEER INFORMATION</h4>
+                    </div>
+                    <div class="img-card-info">
+                        <img class="img-info" src="" alt="">
+                    </div>
+                    <div class="search-info">
+                    <h2 class="name-info"></h2>
+                    <div class="description-info"></div>
+                    
+                    <div class="info-footer">
+                        <a class="info-button hidden" href="#">More info</a>
+                    </div>
+                    </div>
                 </div>
-                <div class="img-card-info">
-                    <img class="img-info" src="" alt="">
-                </div>
-                <div class="search-info">
-                <h2 class="name-info"></h2>
-                <div class="description-info"></div>
-                
-                <div class="info-footer">
-                    <a class="info-button hidden" href="#">More info</a>
-                </div>
-                </div>
-            </div>
-
             </div>            
         </section>
     </main>

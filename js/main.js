@@ -107,7 +107,6 @@ async function renderRandomInfo(beerData){
     
     document.querySelector(".info-list").innerHTML = ""
     const sortBeerData = await renderListInfo(beerData)
-        console.log(sortBeerData);
 
     for(let i = 0; i < sortBeerData.length; i++){
         const newListItem = document.createElement("li")
@@ -118,7 +117,6 @@ async function renderRandomInfo(beerData){
         }else if(i == 2){
             newListItem.innerHTML = "Ingredients: "
             const ingredients = sortBeerData[i]
-            console.log(ingredients);
 
             for (const property in ingredients) {
                 if(typeof(ingredients[property]) == "object") {
@@ -166,12 +164,12 @@ async function searchBeers(beer){
 }
 
 function userInput(){
-    // const beer_name = searchBeers(beer)
     const inputBeerName = document.querySelector("#beer_name")
     const inputButton = document.querySelector(".search-button")
     const nextPrev = document.querySelector(".pagination")
     const errorMsn = document.querySelector(".form-message")
     const errorMsn1 = document.querySelector(".form-message-1")
+
     nextPrev.classList.add("hidden")
     inputButton.addEventListener("click", async () =>{
         hideBeerList()
@@ -179,22 +177,17 @@ function userInput(){
         if(userInputBeer.length < 3 || userInputBeer.length == "" ){
             errorMsn.classList.remove("hidden")
             errorMsn1.classList.add("hidden")
-            // renderBeersList(newBeers)
-        }else if(userInputBeer.length > 10){
-            errorMsn1.classList.remove("hidden")
-            errorMsn.classList.add("hidden")
-            // renderBeersList(newBeers)
-        }
-        // else if(userInputBeer != beer.name){
-        //     console.log("holi");
-        // }
-        
-        else{
+            renderBeersList(newBeers)
+        }else{
             errorMsn.classList.add("hidden")
         }
         const resBeers = await searchBeers(userInputBeer)
+        if(resBeers.length == 0){
+            errorMsn1.classList.remove("hidden")
+            errorMsn.classList.add("hidden")
+        }
         renderBeersList(resBeers)
-        inputBeerName.value = "" // har finns el problema poner un if 
+        inputBeerName.value = ""  
         nextPrev.classList.remove("hidden")
     })
 }
