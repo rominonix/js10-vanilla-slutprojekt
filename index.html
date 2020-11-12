@@ -51,11 +51,16 @@
         </section>
 
         <section class="search">
+        
+
             <div class="form">
                 <label for="b-name">Beer name:</label>
-                <input type="text" id="beer_name" minlength="3" name="beer_name" placeholder=" Write a beer name" required>
+                <input type="text" id="beer_name" minlength="3" name="beer_name" placeholder=" Write a beer name">
+                <p class="form-message hidden"><i class="fas fa-exclamation-triangle"></i><b>Error:</b> You need at least three characters, try again!</p>
+                <p class="form-message-1 hidden"><i class="fas fa-exclamation-triangle"></i><b>Error:</b> You need a maximum of ten characters, try again!</p>
                 <button class="search-button">Search</button>
             </div>    
+
             <div class="search-card">
                 <div class="search-card-left">
                     <div class="title">
