@@ -53,7 +53,9 @@
         <section class="search">
             <div class="form active">
                 <label for="b-name">Beer name:</label>
-                <input type="text" id="beer_name" minlength="3" name="beer_name" placeholder=" Write a beer name" required>
+                <input type="text" id="beer_name" minlength="3" name="beer_name" placeholder=" Write a beer name">
+                <p class="form-message hidden"><i class="fas fa-exclamation-triangle"></i><b>Error:</b> You need at least three characters, try again!</p>
+                <p class="form-message-1 hidden"><i class="fas fa-exclamation-triangle"></i><b>Error:</b> We have not found any beer with that name, try again!</p>
                 <button class="search-button">Search</button>
             </div>    
             <div class="search-card active">
@@ -76,7 +78,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="search-card-right">
                     <div class="title">
                         <h4>BEER INFORMATION</h4>

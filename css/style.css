@@ -97,6 +97,7 @@ main > section {
 
 main > section.active {
     display: block;
+
 }
 
 h1 {
@@ -259,6 +260,7 @@ img {
     margin-top: 2%;
     width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -374,4 +376,9 @@ p.next-prev {
 
 .fel-mess{
     padding: 5% 10% 0 10%;
+}
+
+.fa-exclamation-triangle{
+    font-size: 16px;
+    padding-right: 5px;
 }

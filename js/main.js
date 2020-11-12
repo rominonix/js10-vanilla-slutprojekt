@@ -170,13 +170,27 @@ function userInput(){
     const inputBeerName = document.querySelector("#beer_name")
     const inputButton = document.querySelector(".search-button")
     const nextPrev = document.querySelector(".pagination")
+    const errorMsn = document.querySelector(".form-message")
+    const errorMsn1 = document.querySelector(".form-message-1")
+
     nextPrev.classList.add("hidden")
     inputButton.addEventListener("click", async () =>{
         hideBeerList()
         userInputBeer = inputBeerName.value
+        if(userInputBeer.length < 3 || userInputBeer.length == "" ){
+            errorMsn.classList.remove("hidden")
+            errorMsn1.classList.add("hidden")
+            renderBeersList(newBeers)
+        }else{
+            errorMsn.classList.add("hidden")
+        }
         const resBeers = await searchBeers(userInputBeer)
+        if(resBeers.length == 0){
+            errorMsn1.classList.remove("hidden")
+            errorMsn.classList.add("hidden")
+        }
         renderBeersList(resBeers)
-        inputBeerName.value = ""
+        inputBeerName.value = ""  
         nextPrev.classList.remove("hidden")
     })
 }
@@ -253,7 +267,6 @@ function nextPrevButtons(){
 
     })           
 }
-
 nextPrevButtons()
 
 function hideBeerList(){
@@ -262,7 +275,4 @@ function hideBeerList(){
         currentInfo.classList.add("hidden")
     }
 }
-
-
-
 
