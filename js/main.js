@@ -134,16 +134,28 @@ async function renderRandomInfo(beerData){
     }
 }
 
+//// ALLA MINDRE FUNKTIONER SOM ANVÄNDS I STORA FUNKTIONER ////
+function renderImage(imageElement, beerData) {
+    if(beerData.image_url == null){
+        imageElement.src = "/assets/missing.png"
+    } else{
+        imageElement.src = beerData.image_url
+    }
+}
+
+
 async function renderRandomBeer(beerData){
     renderRandomInfo(beerData)
 
     const beerImages = document.querySelectorAll(".beer-img")
     for (const image of beerImages) {
-        if(beerData.image_url == null){
+        renderImage(image, beerData)
+        
+        /* if(beerData.image_url == null){
             image.src = "/assets/missing.png"
         } else{
             image.src = beerData.image_url
-        }
+        } */
     }
 
     const beerNames = document.querySelectorAll(".beer-name")
@@ -190,7 +202,33 @@ function renderSearchBeers(newBeers){
         newList.classList.add("beer-list", "clear") // relaterad till hideBeerList()
         newList.innerHTML = beer.name
         renderBeers.append(newList)
+
+        newList.addEventListener("click", () => {
+            console.log(beer);
+            renderBeerInfo(beer)
+        })
     }    
+}
+
+async function renderBeerInfo(beer) {
+    const beerInfoDiv = document.querySelector(".search-card-info")
+    beerInfoDiv.innerHTML = ""
+
+    const beerImage = document.createElement("img")
+    renderImage(beerImage, beer)
+    beerInfoDiv.append(beerImage)
+
+    const desc = document.createElement("div")
+    desc.classList.add("search-description")
+    beerInfoDiv.append(desc)
+
+    const beerHeading = document.createElement("h4")
+    beerHeading.innerHTML = beer.name
+    document.querySelector(".search-description").append(beerHeading)
+
+    const descriptionPar = document.createElement("p")
+    descriptionPar.innerHTML = beer.description
+    document.querySelector(".search-description").append(descriptionPar)
 }
 
 function nextPrevButtons(){

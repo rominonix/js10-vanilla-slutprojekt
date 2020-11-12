@@ -60,41 +60,74 @@ main > section.active {
     display: block;
 }
 
+.home.active {
+    width: 100%;
+    padding-top: 2%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 h1 {
     font-family: 'Major Mono Display', monospace;
     color: #ffffff;
     font-size: 250%;
 }
 
-h2 {
+h2, h3, h4 {
     text-align: center;
-}
-
-h3 {
     font-family: 'Spartan', sans-serif;
-    font-weight: 500;  
+    font-weight: 500; 
+    font-size: 16px;
+    letter-spacing: 0.1em;
+}
+.info-card h3 {
+    text-align: left;
+}
+.search h3 {
+    padding: 5%;
+    background: cadetblue;
+    border-radius: 10px 10px 0px 0px;
+    color: whitesmoke;
 }
 
-li, p {
+li, p, .random-button  {
     font-family: 'Spartan', sans-serif;
     font-size: 16px;
     font-weight: 300;
     line-height: 1.5em;
     list-style: none;
 }
-
-.home {
-    width: 100%;
-    padding-top: 2%;
+.tagline {
+    text-align: center;
 }
 
-.card {
+.random-button {
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    background-color: cadetblue;
+    color: whitesmoke;
+    padding: 2% 3%;
+}
+.random-button:hover {
+    background-color: antiquewhite;
+    color: black;
+}
+.random-button:active {
+    background-color: cadetblue;
+    color: whitesmoke;
+}
+
+
+/* .card {
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
+} */
 
 .img-container {
     width: 200px;
@@ -105,9 +138,20 @@ li, p {
     align-items: center;
     background-color: antiquewhite;
 
-    border-radius: 5px;
+    border-radius: 0 0 5px 5px;
 }
 
+.home-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 3%;
+    width: 400px;
+    height: 640px;
+    border-radius: 15px 15px 0px 0px;
+}
 .home-img {
     width: 60%;
 }
@@ -208,7 +252,7 @@ li, p {
     background-color: antiquewhite;
 }
 
-.search-card-right {
+.search-card-right, .home-card {
     background-color: whitesmoke;
 } 
 
@@ -263,3 +307,36 @@ p.next-prev {
     color: teal;
     margin: 0 10% 0 10%;
 }
+
+/* SEARCH RIGHT CARD STYLES */
+
+.search-card-info  {
+    display: grid;
+    grid-template-areas:
+        'image description description'
+        'brewer description description'
+        'brewer food food'
+        'brewer food food'
+    ;
+    align-items: left;
+
+    padding: 5%;
+}
+.search-card-info p {
+    font-size: 14px;
+    padding: 3% 0;
+}
+.search-card-info h4 {
+    text-align: left;
+}
+
+.search-card-info > img {
+    grid-area: image;
+
+    width: 50%;
+}
+.search-card-info > .search-description {
+    grid-area: description;
+}
+
+
