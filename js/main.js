@@ -13,25 +13,21 @@ function navLinks(){
     const links = document.querySelectorAll("nav > a")
     for (let link of links){
         link.addEventListener("click",()=>{
+            const infoCard = document.querySelector(".info-card")
+            infoCard.classList.remove("active")
             document.querySelectorAll("main > section").forEach(
                 section => section.classList.remove("active")
             )
             const section = document.querySelector("." + link.id)
             section.classList.add("active")
+            const homeCard = document.querySelector(".home-card")
+            homeCard.classList.add("active")
         })
     }
 }
 navLinks()
 
 //// BUTTONS HOME SIDA ////
-
-/* const moreInfoButton = document.querySelector(".more-info-button")
-const homePage = document.querySelector(".home")
-const beerInfoPage = document.querySelector(".info")
-moreInfoButton.addEventListener("click", function(){
-    homePage.classList.remove("active")
-    beerInfoPage.classList.add("active")
-}) */
 
 const randomBeerButton = document.querySelector(".random-button")
 randomBeerButton.addEventListener("click", loadBeer)
@@ -72,6 +68,21 @@ async function renderListInfo(beerData){
 }
 
 async function renderRandomInfo(beerData){
+    const beerImages = document.querySelectorAll(".beer-img")
+    for (const image of beerImages) {
+        if(beerData.image_url == null){
+            image.src = "/assets/missing.png"
+        } else{
+            image.src = beerData.image_url
+        }
+    }
+
+    const beerNames = document.querySelectorAll(".beer-name")
+    for (const beerName of beerNames) {
+        beerName.innerHTML = beerData.name
+    }
+    const beerName = document.querySelector(".beer-name")
+    beerName.innerHTML = beerData.name
 
     const descriptionDiv = document.querySelector(".description-text")
     descriptionDiv.innerHTML = ""
@@ -136,23 +147,6 @@ async function renderRandomInfo(beerData){
 
 async function renderRandomBeer(beerData){
     renderRandomInfo(beerData)
-
-    const beerImages = document.querySelectorAll(".beer-img")
-    for (const image of beerImages) {
-        if(beerData.image_url == null){
-            image.src = "/assets/missing.png"
-        } else{
-            image.src = beerData.image_url
-        }
-    }
-
-    const beerNames = document.querySelectorAll(".beer-name")
-    for (const beerName of beerNames) {
-        beerName.innerHTML = beerData.name
-    }
-    const beerName = document.querySelector(".beer-name")
-    beerName.innerHTML = beerData[0].name
-
     const tagline = document.querySelector(".tagline")
     tagline.innerHTML = beerData.tagline
 
@@ -162,6 +156,7 @@ async function renderRandomBeer(beerData){
 
 let userInputBeer = ""
 let pages = 1
+let currentlySelectedBeer = {}
 
 async function searchBeers(beer){
     const searchUrl = `https://api.punkapi.com/v2/beers?beer_name=${beer}&page=${pages}&per_page=10`
@@ -176,25 +171,55 @@ function userInput(){
     const nextPrev = document.querySelector(".pagination")
     nextPrev.classList.add("hidden")
     inputButton.addEventListener("click", async () =>{
+        hideBeerList()
         userInputBeer = inputBeerName.value
         const resBeers = await searchBeers(userInputBeer)
-        renderSearchBeers(resBeers)
+        renderBeersList(resBeers)
         inputBeerName.value = ""
         nextPrev.classList.remove("hidden")
     })
-    // renderSearchBeers(newList)
-    // hideBeerList()
 }
 
-function renderSearchBeers(newBeers){
-    const renderBeers = document.querySelector(".search-card-left")
+function renderBeersList(newBeers){
+    const renderBeers = document.querySelector(".search-beer-list")
     for (let beer of newBeers){
         const newList = document.createElement("li")
-        newList.classList.add("beer-list", "clear") // relaterad till hideBeerList()
+        const moreInfoButton = document.querySelector(".info-button")
+        newList.classList.add("beer-list", "clear")
+        newList.addEventListener("click", () => {
+            moreInfoButton.classList.remove("hidden")
+            const resultImg = document.querySelector(".img-info")
+            const resultName = document.querySelector(".name-info")
+            if(beer.image_url == null){
+                resultImg.src = "/assets/missing.png"
+            } else {
+                resultImg.src = beer.image_url
+            }
+            resultName.innerText = beer.name
+            const resultDes = document.querySelector(".description-info")
+            resultDes.innerText = beer.description
+            currentlySelectedBeer = beer
+        })
         newList.innerHTML = beer.name
-        renderBeers.append(newList)
+        renderBeers.append(newList)   
     }    
 }
+
+function moreInfoSearchSection(){
+    const moreInfoBeer = document.querySelector(".info-button")
+    const searchPage = document.querySelector(".search")
+    const infoCardSearch = document.querySelector(".info-card")
+    moreInfoBeer.addEventListener("click", function(){
+        renderRandomInfo(currentlySelectedBeer)
+        const homeSec = document.querySelector(".home")
+        homeSec.classList.add("active")
+        const searchSec = document.querySelector(".search")
+        searchSec.classList.remove("active")
+        homeCard.classList.remove("active")
+        infoCard.classList.add("active") 
+    })
+}
+moreInfoSearchSection()
 
 function nextPrevButtons(){
     const nextPreviousBeers = userInput()
@@ -205,20 +230,29 @@ function nextPrevButtons(){
             pages--;  
         }
         const resBeers = await searchBeers(userInputBeer)
-        renderSearchBeers(resBeers)
+        renderBeersList(resBeers)
+        const felMess = document.querySelector(".fel-mess")
+        felMess.classList.add("hidden")
     })  
     
     const next = document.querySelector(".next")
     const nextPage = document.querySelector(".pages")
     next.addEventListener("click",async () => {
         hideBeerList()
-        // if(pages < 9){ // här skriva nån villkor för att next button vissas inte när arrayen har mindre 9 elementet
-            pages++; 
-        // } 
+        pages++;
         const resBeers = await searchBeers(userInputBeer)
-        renderSearchBeers(resBeers)
-    })         
+        renderBeersList(resBeers)
+        if(resBeers.length === 0){
+            const felMess = document.querySelector(".fel-mess")
+            felMess.classList.remove("hidden")
+            felMess.innerText = "No more results"
+            hideBeerList()
+            pages--;
+        } 
+
+    })           
 }
+
 nextPrevButtons()
 
 function hideBeerList(){

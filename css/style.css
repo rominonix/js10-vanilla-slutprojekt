@@ -43,6 +43,45 @@ a {
     font-family: 'Spartan', sans-serif;
 } 
 
+button {
+    width: 160px;
+    padding-left: 1%;
+    padding-right: 1%;
+    height: 30px;
+    font-family: 'Spartan', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 400;
+    background-color: cadetblue;
+    color:whitesmoke;
+    border: none;
+    border-radius: 5px;
+    cursor: cell;
+    outline:none;
+}
+
+button:hover {
+    background-color:rgb(186, 186, 186);
+}
+
+input {
+    height: 30px;
+    width: 300px;
+    margin: 1%;
+    border: solid 2px rgb(186, 186, 186);
+    border-radius: 5px;
+}
+
+label {
+    font-family: 'Spartan', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: rgb(45, 45, 45)
+}
+
 main {
     width: 100%;
     height: auto;
@@ -67,7 +106,26 @@ h1 {
 }
 
 h2 {
-    text-align: center;
+    font-family: 'Spartan', sans-serif;
+    font-weight: 500; 
+    font-size: 16px;
+    letter-spacing: 0.1em;
+    text-align: center; 
+    margin: 1%;
+    color: rgb(45, 45, 45)
+}
+
+h3 {
+    font-family: 'Spartan', sans-serif;
+    font-weight: 500; 
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-align: center;  
+    padding: 1%;
+    background: cadetblue;
+    color: whitesmoke;
+    border-radius: 10px 10px 0px 0px;
 }
 
 h4 {
@@ -76,19 +134,19 @@ h4 {
     font-size: 16px;
     letter-spacing: 0.1em;
     text-align: center; 
-    font-family: 'Spartan', sans-serif;
     padding: 5%;
     background: cadetblue;
     color: whitesmoke;
     border-radius: 10px 10px 0px 0px;
 }
 
-li, p {
+li, p, .description-info, .fel-mess{
     font-family: 'Spartan', sans-serif;
     font-size: 16px;
     font-weight: 300;
     line-height: 1.5em;
     list-style: none;
+    color: rgb(45, 45, 45);
 }
 
 img {
@@ -97,7 +155,7 @@ img {
 
 .home, .search {
     width: 100%;
-    padding-top: 2%;
+    padding-top: 1%;
 }
 
 .card {
@@ -116,7 +174,6 @@ img {
     justify-content: center;
     align-items: center;
     background-color: antiquewhite;
-
     border-radius: 5px;
 }
 
@@ -183,24 +240,10 @@ img {
     display: grid;
 }
 
-/* ANIMATION */
-
-/* .info, .search {
-    animation-duration: 1s;
-    animation-name: fadeInUp;
-  }
-  
-  @keyframes fadeInUp {
-    from {
-      margin-top: 100%;
-      width: 100%
-    }
-  
-    to {
-      margin-top: 0%;
-      width: 100%;
-    }
-  } */
+.more-info-button, .info-button{
+    margin-bottom: 1%;
+    color: palevioletred;
+}
 
   /* SEARCH STYLES */
 
@@ -221,12 +264,22 @@ img {
 }
 
 .search-card-right {
+    display: grid;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background-color: whitesmoke;
 } 
 
 .search-card{
     display: flex;
     justify-content: center;   
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
 }
 
 .beer-list{
@@ -241,6 +294,7 @@ img {
     min-height: 60px;
     border-bottom: solid 2px cadetblue;
 }
+
 .beer-list:hover {
     color: whitesmoke;
     background-color: cadetblue;
@@ -258,7 +312,7 @@ img {
 }
 .prev, .next {
   width: 100px;
-  height: 75px;
+  height: 25px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -274,4 +328,39 @@ img {
 p.next-prev {
     color: teal;
     margin: 0 10% 0 10%;
+}
+
+.img-card-info {
+    width: 450px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-info{
+    width: 20%;
+}
+
+.search-beer-list{
+    width: 450px;
+    height: 600px;
+}
+
+.search-info{
+    width: 450px;
+    height: 250px;
+}
+
+.description-info{
+    padding: 1% 5% 1% 5%;
+}
+
+.info-footer{
+    text-align: center;
+}
+
+.fel-mess{
+    padding: 5% 10% 0 10%;
 }
