@@ -262,7 +262,3 @@ function hideBeerList(){
         currentInfo.classList.add("hidden")
     }
 }
-
-
-
-

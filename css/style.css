@@ -259,8 +259,23 @@ img {
     margin-top: 2%;
     width: 100%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-around;
     align-items: center;
+}
+.advanced-search {
+    display: none;
+}
+.advanced-search.active {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+input {
+    padding: 5px 10px;
+}
+.form > button {
+    margin-top: 5px;
 }
 
 .search-card-left, .search-card-right {
