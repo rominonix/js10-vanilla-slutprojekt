@@ -1,7 +1,5 @@
 //// HÄMTA INFO AV RANDOM BEER ////
 
-const randomBeerUrl = "https://api.punkapi.com/v2/beers/random"
-
 async function getRandomBeer(url){
     const response = await fetch(url)
     const data = await response.json()
@@ -32,6 +30,8 @@ navLinks()
 const randomBeerButton = document.querySelector(".random-button")
 randomBeerButton.addEventListener("click", loadBeer)
 
+const randomBeerUrl = "https://api.punkapi.com/v2/beers/random"
+
 async function loadBeer(){
     const beerData = await getRandomBeer(randomBeerUrl)
     renderRandomBeer(beerData)   
@@ -40,35 +40,28 @@ async function loadBeer(){
 //// KÖR DENNA FÖR ATT FÅ UPP EN RANDOM ÖL NÄR MAN ÖPPNAR SIDAN ////
 loadBeer()
 
-//// MORE INFO KNAPPEN OCH LESS INFO KNAPPEN ////
-    // går att göra med en loop som med nav-knapparna //
+//// MORE INFO KNAPPEN PÅ HOME PAGE ////
 
-const moreInfoButton = document.querySelector(".more-info-button")
+const moreInfoButtonHome = document.querySelector(".home .more-info-button")
 const homeCard = document.querySelector(".home-card")
-const infoCard = document.querySelector(".info-card")
-moreInfoButton.addEventListener("click", function(){
+const infoCard = document.querySelector(".home .info-card")
+moreInfoButtonHome.addEventListener("click", function(){
     homeCard.classList.remove("active")
     infoCard.classList.add("active")
-})
-
-const lessInfoButton = document.querySelector(".less-info-button")
-lessInfoButton.addEventListener("click", function(){
-    infoCard.classList.remove("active")
-    homeCard.classList.add("active")
 })
 
 //// ASYNC FUNCTIONS RANDOM BEER ////
 
 async function renderListInfo(beerData){
-    let sortBeerData = []
-    sortBeerData.push(beerData.abv)
-    sortBeerData.push(beerData.volume)
-    sortBeerData.push(beerData.ingredients)
-    return sortBeerData
+    let listInfo = []
+    listInfo.push(beerData.abv)
+    listInfo.push(beerData.volume)
+    listInfo.push(beerData.ingredients)
+    return listInfo
 }
 
-async function renderRandomInfo(beerData){
-    const beerImages = document.querySelectorAll(".beer-img")
+async function renderRandomInfo(beerData, pageClass){
+    const beerImages = document.querySelectorAll(pageClass + " .beer-img")
     for (const image of beerImages) {
         if(beerData.image_url == null){
             image.src = "/assets/missing.png"
@@ -77,26 +70,24 @@ async function renderRandomInfo(beerData){
         }
     }
 
-    const beerNames = document.querySelectorAll(".beer-name")
+    const beerNames = document.querySelectorAll(pageClass + " .beer-name")
     for (const beerName of beerNames) {
         beerName.innerHTML = beerData.name
     }
-    const beerName = document.querySelector(".beer-name")
-    beerName.innerHTML = beerData.name
 
-    const descriptionDiv = document.querySelector(".description-text")
+    const descriptionDiv = document.querySelector(pageClass + " .description-text")
     descriptionDiv.innerHTML = ""
     const descriptionItem = document.createElement("p")
     descriptionItem.innerHTML = beerData.description
     descriptionDiv.append(descriptionItem)
 
-    const brewersTipsDiv = document.querySelector(".brewers-tips-text")
+    const brewersTipsDiv = document.querySelector(pageClass + " .brewers-tips-text")
     brewersTipsDiv.innerHTML = ""
     const brewersItem = document.createElement("p")
     brewersItem.innerHTML = beerData.brewers_tips
     brewersTipsDiv.append(brewersItem)
     
-    const foodPairingList = document.querySelector(".food-pairing-list")
+    const foodPairingList = document.querySelector(pageClass + " .food-pairing-list")
     foodPairingList.innerHTML = ""
     const foodArray = beerData.food_pairing
     foodArray.forEach(foodItem => {
@@ -105,20 +96,18 @@ async function renderRandomInfo(beerData){
         foodPairingList.append(newListItem)
     });
     
-    document.querySelector(".info-list").innerHTML = ""
-    const sortBeerData = await renderListInfo(beerData)
-        console.log(sortBeerData);
+    document.querySelector(pageClass + " .info-list").innerHTML = ""
+    const listInfo = await renderListInfo(beerData)
 
-    for(let i = 0; i < sortBeerData.length; i++){
+    for(let i = 0; i < listInfo.length; i++){
         const newListItem = document.createElement("li")
         if(i == 0){
-            newListItem.innerHTML = `Alcohol by volume: ${sortBeerData[i]}` 
+            newListItem.innerHTML = `Alcohol by volume: ${listInfo[i]}` 
         }else if(i == 1){
-            newListItem.innerHTML = `Volume: ${sortBeerData[i].value} ${sortBeerData[i].unit}` 
+            newListItem.innerHTML = `Volume: ${listInfo[i].value} ${listInfo[i].unit}` 
         }else if(i == 2){
             newListItem.innerHTML = "Ingredients: "
-            const ingredients = sortBeerData[i]
-            console.log(ingredients);
+            const ingredients = listInfo[i]
 
             for (const property in ingredients) {
                 if(typeof(ingredients[property]) == "object") {
@@ -137,16 +126,28 @@ async function renderRandomInfo(beerData){
                 }else{
                     const anotherListItem = document.createElement("li")
                     anotherListItem.innerHTML = `${property}: ${ingredients[property]}`
-                    newListItem.append(anotherListItem) 
+                    newListItem.append(anotherListItem)
                 }
             }
         }          
-        document.querySelector(".info-list").append(newListItem)
+        document.querySelector(pageClass + " .info-list").append(newListItem)
     }
+
+    const lessInfoButton = document.querySelector(pageClass + " .less-info-button")
+    const infoCard = document.querySelector(pageClass + " .info-card")
+    const currentPage = document.querySelectorAll(pageClass + "> div")
+    lessInfoButton.addEventListener("click", function(){
+        for(let div of currentPage){
+            div.classList.add("active")
+        }
+        infoCard.classList.remove("active")
+    })
 }
 
 async function renderRandomBeer(beerData){
-    renderRandomInfo(beerData)
+    const homePageClass = ".home"
+    renderRandomInfo(beerData, homePageClass)
+
     const tagline = document.querySelector(".tagline")
     tagline.innerHTML = beerData.tagline
 
@@ -207,16 +208,16 @@ function renderBeersList(newBeers){
 
 function moreInfoSearchSection(){
     const moreInfoBeer = document.querySelector(".info-button")
-    const searchPage = document.querySelector(".search")
-    const infoCardSearch = document.querySelector(".info-card")
+    const searchPage = document.querySelectorAll(".search > div")
+    const infoCardSearch = document.querySelector(".search .info-card")
     moreInfoBeer.addEventListener("click", function(){
-        renderRandomInfo(currentlySelectedBeer)
-        const homeSec = document.querySelector(".home")
-        homeSec.classList.add("active")
-        const searchSec = document.querySelector(".search")
-        searchSec.classList.remove("active")
-        homeCard.classList.remove("active")
-        infoCard.classList.add("active") 
+        const searchPageClass = ".search"
+        renderRandomInfo(currentlySelectedBeer, searchPageClass)
+
+        for(let div of searchPage) {
+            div.classList.remove("active")
+        }
+        infoCardSearch.classList.add("active") 
     })
 }
 moreInfoSearchSection()
