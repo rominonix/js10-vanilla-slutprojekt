@@ -172,25 +172,27 @@ function userInput(){
     const nextPrev = document.querySelector(".pagination")
     const errorMsn = document.querySelector(".form-message")
     const errorMsn1 = document.querySelector(".form-message-1")
-
-    nextPrev.classList.add("hidden")
+    // nextPrev.classList.add("hidden")
     inputButton.addEventListener("click", async () =>{
         hideBeerList()
         userInputBeer = inputBeerName.value
         if(userInputBeer.length < 3 || userInputBeer.length == "" ){
+            nextPrev.classList.add("hidden")
             errorMsn.classList.remove("hidden")
             errorMsn1.classList.add("hidden")
             renderBeersList(newBeers)
         }else{
             errorMsn.classList.add("hidden")
+            errorMsn1.classList.add("hidden")
         }
         const resBeers = await searchBeers(userInputBeer)
         if(resBeers.length == 0){
+            nextPrev.classList.add("hidden")
             errorMsn1.classList.remove("hidden")
             errorMsn.classList.add("hidden")
         }
         renderBeersList(resBeers)
-        inputBeerName.value = ""  
+        // inputBeerName.value = ""  
         nextPrev.classList.remove("hidden")
     })
 }
@@ -247,20 +249,28 @@ function nextPrevButtons(){
         const resBeers = await searchBeers(userInputBeer)
         renderBeersList(resBeers)
         const felMess = document.querySelector(".fel-mess")
+        const noResults = document.querySelector(".search-beer-list")
+        noResults.classList.remove("hidden")
         felMess.classList.add("hidden")
+        
     })  
     
     const next = document.querySelector(".next")
-    const nextPage = document.querySelector(".pages")
+    // const nextPage = document.querySelector(".pages")
     next.addEventListener("click",async () => {
         hideBeerList()
         pages++;
         const resBeers = await searchBeers(userInputBeer)
         renderBeersList(resBeers)
         if(resBeers.length === 0){
+            const noResults = document.querySelector(".search-beer-list")
             const felMess = document.querySelector(".fel-mess")
+            // const nextHide = document.querySelector(".next")
+
+            noResults.classList.add("hidden")
             felMess.classList.remove("hidden")
-            felMess.innerText = "No more results"
+            // nextHide.classList.add("hidden")
+            // felMess.innerText = "No more results"
             hideBeerList()
             pages--;
         } 
