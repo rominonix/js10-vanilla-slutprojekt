@@ -178,8 +178,19 @@ img {
     border-radius: 5px;
 }
 
+.img-container-home{
+    width: 250px;
+    height: 450px;
+    padding: 1%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: antiquewhite;
+    border-radius: 5px;
+}
+
 .home-img {
-    width: 60%;
+    width: 100px;
 }
 
 .info-img {
@@ -187,9 +198,6 @@ img {
 }
 
 .info-card {
-
-    /* position: absolute;
-    z-index: 1; */
 
     background-color: whitesmoke;
     border-radius: 15px;
@@ -246,7 +254,7 @@ img {
     display: grid;
 }
 
-.more-info-button, .info-button {
+.more-info-button, .info-button, .less-info-button{
     margin-bottom: 1%;
     color: palevioletred;
 }
@@ -300,12 +308,6 @@ img {
     display: flex;
     justify-content: center;   
 }
-
-/* .title {
-    display: flex;
-    flex-direction: column;
-    align-self: flex-start;
-} */
 
 .beer-list{
     font-size: 14px;
