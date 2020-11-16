@@ -256,7 +256,6 @@ function nextPrevButtons(){
     })  
     
     const next = document.querySelector(".next")
-    // const nextPage = document.querySelector(".pages")
     next.addEventListener("click",async () => {
         hideBeerList()
         pages++;
@@ -265,12 +264,8 @@ function nextPrevButtons(){
         if(resBeers.length === 0){
             const noResults = document.querySelector(".search-beer-list")
             const felMess = document.querySelector(".fel-mess")
-            // const nextHide = document.querySelector(".next")
-
             noResults.classList.add("hidden")
             felMess.classList.remove("hidden")
-            // nextHide.classList.add("hidden")
-            // felMess.innerText = "No more results"
             hideBeerList()
             pages--;
         } 
